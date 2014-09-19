@@ -98,8 +98,7 @@ strong{
 .panel-depauw{
   margin-top: 10px;
   border-color: #F1CB00 !important;
-  margin-bottom: 20px;
-  background: #000 !important;
+  margin-bottom: 80px !important;
 }
 .panel-success > .panel-heading{
   background: #d6e9c6 !important;
@@ -132,7 +131,6 @@ h2, h3 {
   color: #222 !important;
 }
 h4{
-  color: #ccc !important;
 }
 .table {
       width: 100% !important;

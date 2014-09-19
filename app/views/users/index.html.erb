@@ -68,17 +68,11 @@
             <thead>
               <th>Departure Time</th>
               <th>Driver</th>
-              <th>Payment Status</th>
             </thead>
               <tr>
                 <td><%= r.start_time.strftime("%b-%d %H:%M")%></td>
                 <% if User.find_by_id(r.driver_id) %>
                   <td><%= User.find_by_id(r.driver_id).email%></td>
-                <% end %>
-                <% if current_user.paid?(r) %>
-                  <td> <a><span class="glyphicon glyphicon-ok"></span></a></td>
-                <% else %>
-                  <td> <%= button_to "Pay $#{current_user.cost(r)}", {controller: "users", action:"pay_auth", ride: r, cost: current_user.cost(r) }, class:"btn btn-depauw" %></td>
                 <% end %>
               </tr>
             </tbody>

@@ -3,9 +3,9 @@
 <div class="col-xs-9 col-sm-6 col-sm-offset-3">
   <h2>Request a Ride</h2>
   <%= form_for :ride, url:{action: "create"} do |f| %>
-  <div class="col-xs-9 col-sm-6">
     <div class="panel panel-depauw">
       <div class="panel-body">
+      <div class="col-xs-9 col-sm-6">
         <div><h4>Start</h4>
         <%= f.text_field :ride_start, id: "start", data: {autocomplete_source:
                                              Ride.list_start }%></div><br />
@@ -14,12 +14,8 @@
         <%= f.text_field :destination, id: "destination", data: {autocomplete_source:
                                              Ride.list_destination }%></div><br />
       </div>
-    </div>
- </div>
 
-  <div class="col-xs-9 col-sm-6">
-    <div class="panel panel-depauw">
-      <div class="panel-body">
+        <div class="col-xs-9 col-sm-6">
           <h4> Departure Start Time </h4>
           <div class="form-group">
             <div class="input-group date" id="datetimepicker1">
