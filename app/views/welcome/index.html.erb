@@ -14,7 +14,6 @@
       <% if current_user then %>
         <th>Seats</th>
         <th>Driver</th>
-        <th>Cost ($)</th>
         <th>Action</th>
       <% end %>
     </thead>
@@ -30,11 +29,10 @@
       </td>
       <td class=""><%= r.start %></td>
       <td class=""><%= r.destination %></td>
-      <td class=""><%= r.time.strftime("%b-%d %H:%M") %></td>
+      <td class=""><%= r.start_time.strftime("%b-%d %H:%M") %></td>
       <% if current_user then %>
       <td class=""><%= r.seats_left %></td>
       <td class=""><%= User.find_by_id(r.driver_id)? User.find_by_id(r.driver_id).name : ""%></td>
-      <td class=""><%= r.cost %></td>
         <td>
           <% if current_user.passenger?(r) %>
             <div style="display:inline-block">

@@ -99,6 +99,7 @@ strong{
   margin-top: 10px;
   border-color: #F1CB00 !important;
   margin-bottom: 20px;
+  background: #000 !important;
 }
 .panel-success > .panel-heading{
   background: #d6e9c6 !important;

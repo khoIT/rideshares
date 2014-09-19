@@ -1,11 +1,11 @@
 class Ride < ActiveRecord::Base
    has_many :passenger_rides, foreign_key: "ride_id", dependent: :destroy
    has_many :passengers, through: :passenger_rides, class_name: "User"
-   validates :start, :destination, :time, presence: true
+   validates :start, :destination, :start_time, presence: true
 
    belongs_to :user, inverse_of: :rides
 
-   scope :current, -> {where("time >= ?", Time.now)}
+   scope :current, -> {where("end_time >= ?", Time.now)}
    scope :active, -> {where("seats_left > ?", 0)}
 
    #return pending_passengers of this ride
@@ -50,8 +50,8 @@ class Ride < ActiveRecord::Base
 
    #if ride has same start and destination and less than 12 hours then matches ? returns
    def matches
-     Ride.where("lower(start) like ? AND lower(destination) like ? AND id != ?", self.start.downcase, self.destination.downcase, self.id).
-       where({time: (self.time - 12.hour)..(self.time + 12.hour)})
+     @same_location = Ride.where("lower(start) like ? AND lower(destination) like ? AND id != ?", self.start.downcase, self.destination.downcase, self.id)
+     @same_location.where("start_time between ? and ? or end_time between ? and ?",  self.start_time, self.end_time, self.start_time, self.end_time)
    end
 
 

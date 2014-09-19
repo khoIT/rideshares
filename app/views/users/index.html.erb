@@ -9,11 +9,10 @@
             <thead>
               <th>Date</th>
               <th>Seats</th>
-              <th>Price</th>
             </thead>
             <tbody>
               <tr>
-                <td><%= r.time.strftime("%b-%d %H:%M") %></td>
+                <td><%= r.start_time.strftime("%b-%d %H:%M") %></td>
                 <% if r.seats_left.nil? %>
                   <td class="col-md-4">
                     <%= form_for :ride, html:{id:"seats"},
@@ -24,17 +23,6 @@
                   </td>
                 <% else %>
                     <td><%= r.seats_left %></td>
-                <% end %>
-                <% if r.cost.nil? %>
-                  <td class="col-md-4">
-                    <%= form_for :ride, html:{id:"cost"},
-                      url:{controller: "rides", action: "update_cost", id: r.id} do |f| %>
-                    <%= f.text_field :cost, class: "col-md-4" %>
-                    <div class="pull-right"><%= f.submit "OK", {class: "btn btn-depauw"} %></div>
-                  <% end %>
-                  </td>
-                <% else %>
-                  <td><%= r.cost %></td>
                 <% end %>
               </tr>
             </tbody>
@@ -54,16 +42,10 @@
               <% end %>
               <thead>
               <th>Current Passengers</th>
-              <th>Payment status</th>
               </thead>
               <% r.passengers.each do |p| %>
                 <tr>
                   <td> <%= p.email %> </td>
-                  <% if p.paid?(r) %>
-                    <td> <a><span class="glyphicon glyphicon-ok"></span></a></td>
-                  <% else %>
-                    <td> <a><span class="glyphicon glyphicon-remove"></span></a></td>
-                  <% end %>
                 </tr>
               <% end %>
               <% if !r.comment.nil? then %>
@@ -89,7 +71,7 @@
               <th>Payment Status</th>
             </thead>
               <tr>
-                <td><%= r.time.strftime("%b-%d %H:%M")%></td>
+                <td><%= r.start_time.strftime("%b-%d %H:%M")%></td>
                 <% if User.find_by_id(r.driver_id) %>
                   <td><%= User.find_by_id(r.driver_id).email%></td>
                 <% end %>
