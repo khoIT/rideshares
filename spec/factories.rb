@@ -9,6 +9,7 @@ FactoryGirl.define do
     start "DePauw"
     destination "Indy Airport"
     seats_left 3
-    time Time.now
+    start_time Time.now
+    end_time Time.now
   end
 end

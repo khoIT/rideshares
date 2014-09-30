@@ -29,7 +29,7 @@ RSpec.describe Ride, :type => :model do
 
   it 'should match other rides' do
     #if ride has same start anad destination and less than 12 hours then matches ? returns true
-    @existing_ride = FactoryGirl.create(:ride, time: Time.now.beginning_of_hour())
+    @existing_ride = FactoryGirl.create(:ride, start_time: Time.now.beginning_of_hour())
     expect(@ride.matches).to include(@existing_ride)
   end
 end
